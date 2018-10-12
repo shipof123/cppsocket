@@ -10,12 +10,11 @@ Cppsocket is a cross-platform Header only library that uses callback functions t
 Set Callback for any Errors
 ex:
 ```
-            client.setConnectErrorCallback([&client, address](cppsocket::Socket& socket) {
-                std::cout << "Failed to connected to " << cppsocket::ipToString(socket.getRemoteIPAddress()) << std::endl;
+  client.setConnectErrorCallback([&client, address](cppsocket::Socket& socket) {
+      std::cout << "Failed to connected to " << cppsocket::ipToString(socket.getRemoteIPAddress()) << std::endl;
 
-                client.connect(address);
-            });
-        }
+      client.connect(address);
+   });
 ```
     
 <!-- // To transform into Docs
