@@ -6,8 +6,6 @@ Description
 Cppsocket is a cross-platform Header only library that uses callback functions to process data  
 
 ## Usage:
-./shinatra.sh [port] [response] 
-
 `void setConnectErrorCallback(const std::function<void(Socket&)>& newConnectErrorCallback)`
 Set Callback for any Errors
 
