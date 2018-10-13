@@ -12,7 +12,7 @@ Cppsocket is a cross-platform Header only library that uses callback functions t
 ```cpp
 void setConnectErrorCallback(const std::function<void(Socket&)>& newConnectErrorCallback)
 ```
-Set Callback for Connection Errors
+Set Callback for Connection Errors  
 ex:  
 ```cpp
   client.setConnectErrorCallback([&client, address](cppsocket::Socket& socket) {
