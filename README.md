@@ -6,19 +6,20 @@ C++ socket wrapper
 Cppsocket is a cross-platform Header only library that uses callback functions to process data  
 
 # Usage:
+## Table of contents
+ - [Callbacks](/#)
+ 
 ```cpp
 void setConnectErrorCallback(const std::function<void(Socket&)>& newConnectErrorCallback)
-```  
-Set Callback for any Errors  
+```
+Set Callback for Connection Errors
 ex:  
 ```cpp
   client.setConnectErrorCallback([&client, address](cppsocket::Socket& socket) {
       std::cout << "Failed to connected to " << cppsocket::ipToString(socket.getRemoteIPAddress()) << std::endl;
-
       client.connect(address);
    });
 ```
-    
 <!-- // To transform into Docs
 #include <iostream>
 #include <chrono>
