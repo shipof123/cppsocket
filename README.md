@@ -7,8 +7,8 @@ Cppsocket is a cross-platform Header only library that uses callback functions t
 
 # Usage:
 ## Table of contents
- - [Callbacks](/#)
- 
+ - [Callbacks](/docs/Callbacks.md)
+<!-- 
 ```cpp
 void setConnectErrorCallback(const std::function<void(Socket&)>& newConnectErrorCallback)
 ```
@@ -20,7 +20,7 @@ ex:
       client.connect(address);
    });
 ```
-<!-- // To transform into Docs
+// To transform into Docs
 #include <iostream>
 #include <chrono>
 #include <thread>
