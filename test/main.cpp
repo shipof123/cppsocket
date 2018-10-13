@@ -20,7 +20,7 @@ int main(int argc, const char* argv[])
         if (argc < 3)
         {
             printUsage(argc ? argv[0] : "test");
-            return EXIT_SUCCESS;
+            return EXIT_FAILURE;
         }
 
         std::string type = argv[1];
