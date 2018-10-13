@@ -39,11 +39,34 @@ Connect to server and set up [callback functions](/docs/Callbacks.md)
 ```cpp
   client.connect(host);
   
-  client.setReadCallback([](const cppsocket::Socket& Server, const std::vector<uint8_t> data){
+  client.setReadCallback([](const cppsocket::Socket& server, const std::vector<uint8_t> data){
     std::cout <<
-       "Recieved data: " << data.data() << " from: " << cppsocket::ipToString(socket.getRemoteIPAddress())
+       "Recieved data: " << data.data() << " from: " << cppsocket::ipToString(server.getRemoteIPAddress())
     << std::endl;
   });
   
+  client.setConnectCallback([](cppsocket::Socket& server) {
+    std::cout << "Connected to " << cppsocket::ipToString(server.getRemoteIPAddress()) << std::endl;
+    server.send(msg);
+  });
+  
+    client.setConnectErrorCallback([&client, address](cppsocket::Socket& server) {
+      std::cout << "Failed to connected to " << cppsocket::ipToString(server.getRemoteIPAddress()) << std::endl;
+      client.connect(host);
+   });
+```
+
+Updating
+```cpp
+  const std::chrono::microseconds sleepTime(10000);
+
+  for (;;)
+  {
+      network.update(); // call main server loop and check for connections
+
+      std::this_thread::sleep_for(sleepTime);
+  }  
 }
 ```
+
+code adapted from [/test](/test/main.cpp)
