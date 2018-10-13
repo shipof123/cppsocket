@@ -1,11 +1,11 @@
 # cppsocket 
 C++ socket wrapper
 
-Description
-------
+# Description
+
 Cppsocket is a cross-platform Header only library that uses callback functions to process data  
 
-## Usage:
+# Usage:
 ```cpp
 void setConnectErrorCallback(const std::function<void(Socket&)>& newConnectErrorCallback)
 ```  
