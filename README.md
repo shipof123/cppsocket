@@ -20,23 +20,30 @@ Includes
 Setting up host
 ```cpp
 int main() {
-  if(argc < 2) {
-    std::cerr << "Usage: " << argv[0] << "  [hostname]" << std::endl;
+  if(argc < 3) {
+    std::cerr << "Usage: " << argv[0] << "  [hostname] [port]" << std::endl;
     return EXIT_FAILURE;
   }
-  std::string host = argv[1];
+  const std::vector<uint8_t> msg = {'H','e','l','l','o',' ','W','o','r','l','d'};
+  const std::string host = argv[1];
+  
   
   cppsocket::Network network;  
   cppsocket::Socket client(network);
   
   client.setBlocking(false);
   client.setConnectTimeout(2.0f);
-  client.connect(host);
-
 ``` 
-Set up callback functions
+Connect to server and set up [callback functions](/docs/Callbacks.md)
 
 ```cpp
+  client.connect(host);
+  
+  client.setReadCallback([](const cppsocket::Socket& Server, const std::vector<uint8_t> data){
+    std::cout <<
+       "Recieved data: " << data.data() << " from: " << cppsocket::ipToString(socket.getRemoteIPAddress())
+    << std::endl;
+  });
   
 }
 ```
