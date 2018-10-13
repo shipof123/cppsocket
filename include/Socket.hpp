@@ -37,6 +37,13 @@ namespace cppsocket
     static const uint16_t ANY_PORT = 0;
     static const int WAITING_QUEUE_SIZE = 5;
 
+    inline std::vector<uint8_t> stringToVector(const std::string& src)
+    {
+        const std::vector<uint8_t> v(src.begin(), src.end());
+        
+        return v;
+    }
+    
     inline std::string ipToString(uint32_t ip)
     {
         uint8_t* ptr = reinterpret_cast<uint8_t*>(&ip);
@@ -379,12 +386,19 @@ namespace cppsocket
             connectErrorCallback = newConnectErrorCallback;
         }
 
-        void send(std::vector<uint8_t> buffer)
+        void send(const std::vector<uint8_t>& buffer)
         {
             if (socketFd == INVALID_SOCKET)
                 throw std::runtime_error("Invalid socket");
 
             outData.insert(outData.end(), buffer.begin(), buffer.end());
+        }
+        
+        void send(const std::string& buffer){
+            if (socketFd == INVALID_SOCKET)
+                throw std::runtime_error("Invalid socket");
+            buff_vect = stringToVector(buffer);
+            outData.insert(outData.end(), buff_vect.begin(), buff_vect.end());
         }
 
         uint32_t getLocalIPAddress() const { return localIPAddress; }
